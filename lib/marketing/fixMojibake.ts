@@ -7,7 +7,6 @@ function buildUnicodeToByteMap(): Map<number, number> {
     if (cp !== undefined) m.set(cp, b);
   }
   m.set(0x178, 0x9f); // Ÿ ← UTF-8 0x9F (emoji continuation)
-  m.set(0xa1, 0x9a); // ¡ ← 0x9A
   m.set(0x20ac, 0x80); // € ← UTF-8 0x80
   m.set(0x2019, 0x92); // ' ← 0x92
   return m;
@@ -19,14 +18,15 @@ const UNICODE_TO_BYTE = buildUnicodeToByteMap();
  * UTF-8 continuation bytes 0x80–0xBF are often saved as smart quotes / punctuation
  * instead of the raw C1 controls WHATWG windows-1252 gives for 0x80–0x9F.
  */
-function byteFromMojibakeChar(
-  cp: number,
-  j: number,
-  cp0: number,
-  cp1: number,
-): number | undefined {
+function byteFromMojibakeChar(cp: number, j: number, chars: string[]): number | undefined {
+  const cp0 = chars[0]!.codePointAt(0)!;
+  const cp1 = chars.length > 1 ? chars[1]!.codePointAt(0)! : 0;
   if (j === 2 && cp0 === 0xe2 && cp1 === 0x161 && cp === 0x20) return 0xa0;
   if (j < 2 || cp0 !== 0xf0 || cp1 !== 0x178) return undefined;
+  const next = chars[j + 1];
+  const nextCp = next ? next.codePointAt(0)! : 0;
+  // 📦 U+1F4E6 uses byte 0x93; editors sometimes substitute ' (U+2019) for " (U+201C)
+  if (j === 2 && cp === 0x2019 && nextCp === 0xa6) return 0x93;
   switch (cp) {
     case 0x2018:
       return 0x91;
@@ -41,13 +41,17 @@ function byteFromMojibakeChar(
       return 0x8b;
     case 0x203a:
       return 0x9b;
-    // Latin letters substituted for C1 / continuation bytes in some exports
+    // Latin letters / symbols substituted for C1 / continuation bytes in some exports
     case 0x17d:
       return 0x8e;
     case 0x17e:
       return 0x9e;
     case 0x160:
       return 0x8a;
+    case 0x161:
+      return 0x9a;
+    case 0x2c6:
+      return 0x88;
     default:
       return undefined;
   }
@@ -60,10 +64,7 @@ function tryUtf8BytesFromMojibake(chunk: string): string | null {
     const c = chars[j]!;
     const cp = c.codePointAt(0)!;
     if (cp > 0xffff) return null;
-    const cp0 = chars[0]!.codePointAt(0)!;
-    const cp1 = chars.length > 1 ? chars[1]!.codePointAt(0)! : 0;
-    const b =
-      UNICODE_TO_BYTE.get(cp) ?? byteFromMojibakeChar(cp, j, cp0, cp1);
+    const b = UNICODE_TO_BYTE.get(cp) ?? byteFromMojibakeChar(cp, j, chars);
     if (b === undefined) return null;
     bytes.push(b);
   }
@@ -96,6 +97,16 @@ function isRecoveredSymbolOrPunct(t: string): boolean {
   return false;
 }
 
+/** Avoid E2-cluster matching ASCII letters after a short punctuation decode (false positives). */
+function isSafeE2Recovery(chunk: string, decoded: string): boolean {
+  if (decoded.length > 6) return false;
+  const last = decoded.codePointAt(decoded.length - 1)!;
+  if (last >= 0x41 && last <= 0x5a) return false;
+  if (last >= 0x61 && last <= 0x7a) return false;
+  if (chunk.length > 6 && decoded.length <= 2) return false;
+  return true;
+}
+
 /** Replace UTF-8–as–mojibake clusters starting with ð (U+00F0). */
 function replaceLeadingF0Clusters(html: string): string {
   let out = "";
@@ -112,7 +123,7 @@ function replaceLeadingF0Clusters(html: string): string {
     const max = Math.min(24, html.length - i);
     for (let len = max; len >= 4; len--) {
       const chunk = html.slice(i, i + len);
-      if (chunk.includes("<")) break;
+      if (chunk.includes("<")) continue;
       const t = tryUtf8BytesFromMojibake(chunk);
       if (t && isEmojiOrSymbolResult(t)) {
         out += t;
@@ -145,9 +156,9 @@ function replaceLeadingE2Clusters(html: string): string {
     const max = Math.min(12, html.length - i);
     for (let len = max; len >= 3; len--) {
       const chunk = html.slice(i, i + len);
-      if (chunk.includes("<")) break;
+      if (chunk.includes("<")) continue;
       const t = tryUtf8BytesFromMojibake(chunk);
-      if (t && isRecoveredSymbolOrPunct(t)) {
+      if (t && isRecoveredSymbolOrPunct(t) && isSafeE2Recovery(chunk, t)) {
         out += t;
         i += len;
         replaced = true;
@@ -167,6 +178,9 @@ function replaceLeadingE2Clusters(html: string): string {
  */
 export function fixMojibake(html: string): string {
   let s = html;
+
+  // Stray â before a real en dash (UTF-8 E2 80 93 only partially “repaired” in some exports)
+  s = s.replaceAll("\u00e2\u2013", "\u2013");
 
   // Em / en dash (UTF-8 E2 80 94 / E2 80 93) — third char is U+201D / U+201C, not ASCII "
   s = s.replaceAll("\u00e2\u20ac\u201d", "\u2014");
@@ -199,6 +213,8 @@ export function fixMojibake(html: string): string {
   // Known broken 4-byte sequences in source HTML (wrong last byte / editor substitution)
   s = s.replaceAll("\u00f0\u0178\u201d\u0081", "\u{1F91D}");
   s = s.replaceAll("\u00f0\u0178\u201c\u00a3", "\u{1F4E2}");
+  // 🏪 U+1F3EA: spurious space before feminine ordinal (byte AA) in some copies
+  s = s.replaceAll("\u00f0\u0178\u0020\u00aa", "\u{1F3EA}");
 
   s = replaceLeadingE2Clusters(s);
   s = replaceLeadingF0Clusters(s);
