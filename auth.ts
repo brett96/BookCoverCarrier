@@ -6,8 +6,21 @@ import { authConfig } from "@/auth.config";
 import { getDb } from "@/lib/db/client";
 import { users } from "@/lib/db/schema";
 
+/** Required in production; Auth.js returns 500 on /api/auth/session if missing. */
+const authSecret =
+  process.env.AUTH_SECRET?.trim() ||
+  process.env.NEXTAUTH_SECRET?.trim();
+
+if (process.env.VERCEL && !authSecret) {
+  console.error(
+    "[auth] Missing AUTH_SECRET (or NEXTAUTH_SECRET). Add it in Vercel → Settings → Environment Variables for Production and Preview (and Development if used), then redeploy."
+  );
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
+  ...(authSecret ? { secret: authSecret } : {}),
+  trustHost: true,
   providers: [
     Credentials({
       name: "Credentials",
