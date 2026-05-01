@@ -1,0 +1,242 @@
+﻿<!-- ADMIN PORTAL -->
+<section class="admin-demo" id="admin-demo">
+  <div class="admin-inner">
+    <div class="admin-header">
+      <span class="eyebrow">Our Tools &amp; Your Visibility</span>
+      <h2>What Your BookCover Consultant <span class="ac">Works With</span></h2>
+      <p class="body-copy ctr">These are the tools our retention consultants use to manage your program â€” and the same live view your team has alongside us. We believe in complete transparency into our work. You can see exactly what we're doing, who we're reaching, and how your book is performing at any time. Salesforce CRM integration is also available as an optional add-on.</p>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" onclick="showAdmin(0,this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Engagement Scoring
+      </button>
+      <button class="admin-tab-btn" onclick="showAdmin(1,this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 12 18.92"/></svg>Outreach Campaigns
+      </button>
+      <button class="admin-tab-btn" onclick="showAdmin(2,this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>Book of Business Reporting
+      </button>
+      <button class="admin-tab-btn" onclick="showAdmin(3,this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Salesforce Integration <span style="font-size:10px;opacity:.65;font-weight:600">(Optional)</span>
+      </button>
+    </div>
+
+    <!-- PANEL 0: ENGAGEMENT SCORING -->
+    <div class="admin-panel active" id="admin-0">
+      <div class="laptop-wrap">
+        <div class="laptop">
+          <div class="laptop-notch"><div class="laptop-cam"></div></div>
+          <div class="laptop-screen">
+            <div class="dash">
+              <div class="dash-nav">
+                <div class="dash-brand"><div class="dash-brand-dot"></div>BookCover Carrier Portal</div>
+                <div class="dash-nav-items"><div class="dash-nav-lnk on">Engagement</div><div class="dash-nav-lnk">Campaigns</div><div class="dash-nav-lnk">Reports</div><div class="dash-nav-lnk">Settings</div><div class="dash-user">RC</div></div>
+              </div>
+              <div class="dash-body">
+                <div class="dash-sidebar">
+                  <div class="dash-sb-item on"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#0070B9" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="dash-sb-lbl">Scoring</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="dash-sb-lbl">Members</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg><div class="dash-sb-lbl">Outreach</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><div class="dash-sb-lbl">Reports</div></div>
+                </div>
+                <div class="dash-content">
+                  <div class="dp-kpis">
+                    <div class="dp-kpi kpi-red"><div class="dp-kpi-n">1,847</div><div class="dp-kpi-l">Low Engagement â€” Priority Outreach</div></div>
+                    <div class="dp-kpi kpi-amber"><div class="dp-kpi-n">4,210</div><div class="dp-kpi-l">Moderate Engagement â€” Nurture</div></div>
+                    <div class="dp-kpi"><div class="dp-kpi-n">43,892</div><div class="dp-kpi-l">Highly Engaged â€” Retain</div></div>
+                    <div class="dp-kpi kpi-blue"><div class="dp-kpi-n">94%</div><div class="dp-kpi-l">Book Retention Score</div></div>
+                  </div>
+                  <div class="dash-section-label">Members Prioritized by Engagement Score â€” Updated Live</div>
+                  <table class="dp-table">
+                    <thead><tr><th>Member</th><th>Plan / LOB</th><th>Engagement Score</th><th>Key Signals</th><th>Trend</th><th>Next Action</th></tr></thead>
+                    <tbody>
+                      <tr><td style="font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;color:var(--forest)">Johnson, Margaret R.</td><td style="font-size:8px;color:var(--slate)">HMO Gold Â· MA</td><td><span class="sp sp-r">28 Â· Low</span></td><td style="font-size:7.5px;color:var(--slate)">No login 90d Â· Denied claim Â· 0 benefits used</td><td class="trend-d">â–¼ âˆ’14</td><td><span class="act-badge ab-r">Call Today</span></td></tr>
+                      <tr><td style="font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;color:var(--forest)">Williams, Robert T.</td><td style="font-size:8px;color:var(--slate)">PPO Select Â· MA</td><td><span class="sp sp-r">34 Â· Low</span></td><td style="font-size:7.5px;color:var(--slate)">Negative sentiment Â· Provider concern</td><td class="trend-d">â–¼ âˆ’9</td><td><span class="act-badge ab-r">Call Today</span></td></tr>
+                      <tr><td style="font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;color:var(--forest)">Chen, Linda A.</td><td style="font-size:8px;color:var(--slate)">HMO Plus Â· MA</td><td><span class="sp sp-a">51 Â· Moderate</span></td><td style="font-size:7.5px;color:var(--slate)">OTC unused Â· No app activity this month</td><td class="trend-d">â–¼ âˆ’5</td><td><span class="act-badge ab-a">Auto Outreach</span></td></tr>
+                      <tr><td style="font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;color:var(--forest)">Martinez, Ana P.</td><td style="font-size:8px;color:var(--slate)">DSNP Â· D-SNP</td><td><span class="sp sp-a">48 Â· Moderate</span></td><td style="font-size:7.5px;color:var(--slate)">Recent move Â· Plan-fit question logged</td><td class="trend-d">â–¼ âˆ’11</td><td><span class="act-badge ab-a">Auto Outreach</span></td></tr>
+                      <tr><td style="font-family:'Nunito',sans-serif;font-weight:800;font-size:9px;color:var(--forest)">Thompson, David K.</td><td style="font-size:8px;color:var(--slate)">PDP Standard Â· PDP</td><td><span class="sp sp-g">78 Â· Engaged</span></td><td style="font-size:7.5px;color:var(--slate)">Active Â· 2 benefit actions this quarter</td><td class="trend-u">â–² +4</td><td><span class="act-badge ab-t">Monitor</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div><div class="laptop-foot"></div>
+      </div>
+      <div class="admin-copy">
+        <div class="admin-tag tag-score">Expert Scoring &amp; Analysis</div>
+        <h3>We tell you who needs attention, why it matters, and what to do about it.</h3>
+        <p>Our retention analysts don't just produce a score and hand it to you. We monitor every member's engagement continuously, interpret the signals driving each score, and translate the data into a clear, prioritized action list for your team. The scoring is the foundation â€” the expert analysis on top of it is the difference.</p>
+        <div class="admin-feat"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div><div class="admin-f-title">Live Engagement Scores Across Your Entire Book</div><div class="admin-f-txt">Every member is scored in real time as claims process, benefits are used, and member interactions occur. Your consultant monitors these scores daily â€” flagging meaningful changes and identifying which movements require immediate outreach versus routine nurture.</div></div></div>
+        <div class="admin-feat"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div class="admin-f-title">Signal Interpretation, Not Just Data</div><div class="admin-f-txt">Your consultant explains what's behind every score â€” unused benefits, unresolved claims, sentiment shifts, engagement gaps â€” and provides context your internal team may not have the bandwidth to develop on their own. We turn data into direction.</div></div></div>
+        <div class="admin-feat"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div><div class="admin-f-title">Prioritized Action Lists for Your Team</div><div class="admin-f-txt">Rather than handing your team a table of thousands of members, your consultant delivers a focused, prioritized outreach queue â€” ranked by urgency, annotated with context, and ready to act on. Your team knows exactly who to call first and what to say when they do.</div></div></div>
+      </div>
+    </div>
+
+    <!-- PANEL 1: CAMPAIGNS -->
+    <div class="admin-panel" id="admin-1">
+      <div class="laptop-wrap">
+        <div class="laptop">
+          <div class="laptop-notch"><div class="laptop-cam"></div></div>
+          <div class="laptop-screen">
+            <div class="dash">
+              <div class="dash-nav"><div class="dash-brand"><div class="dash-brand-dot"></div>BookCover Carrier Portal</div><div class="dash-nav-items"><div class="dash-nav-lnk">Engagement</div><div class="dash-nav-lnk on">Campaigns</div><div class="dash-nav-lnk">Reports</div><div class="dash-nav-lnk">Settings</div><div class="dash-user">RC</div></div></div>
+              <div class="dash-body">
+                <div class="dash-sidebar">
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="dash-sb-lbl">Scoring</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="dash-sb-lbl">Members</div></div>
+                  <div class="dash-sb-item on"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#0070B9" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.37 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.41 5.41l.77-.77a2 2 0 0 1 2.11-.45A12.84 12.84 0 0 0 19 12a2 2 0 0 1 1.72 2z"/></svg><div class="dash-sb-lbl">Outreach</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><div class="dash-sb-lbl">Reports</div></div>
+                </div>
+                <div class="dash-content">
+                  <div class="dp-kpis"><div class="dp-kpi"><div class="dp-kpi-n">12</div><div class="dp-kpi-l">Active Campaigns</div></div><div class="dp-kpi kpi-blue"><div class="dp-kpi-n">48,291</div><div class="dp-kpi-l">Members Enrolled</div></div><div class="dp-kpi"><div class="dp-kpi-n">76%</div><div class="dp-kpi-l">Avg. Engagement Rate</div></div><div class="dp-kpi kpi-amber"><div class="dp-kpi-n">3</div><div class="dp-kpi-l">Campaigns in Draft</div></div></div>
+                  <div class="dash-section-label">Active Outreach Campaigns</div>
+                  <div style="display:flex;flex-direction:column;gap:6px">
+                    <div class="camp-row"><div class="camp-icon ci-t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0070B9" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div><div><div class="camp-name">Low-Engagement Member Re-Connection</div><div class="camp-sub">MA All Â· 1,847 members Â· Score &lt; 35 trigger Â· App + outbound call</div></div><div class="camp-right"><div class="camp-count">1,847</div><div class="camp-status cs-on">â— Active</div></div></div>
+                    <div class="camp-row cg"><div class="camp-icon ci-g"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C08020" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div><div><div class="camp-name">Benefit Utilization Reminder â€” OTC &amp; Dental</div><div class="camp-sub">All MA Â· 22,100 members Â· Q3 expiration approaching</div></div><div class="camp-right"><div class="camp-count">22,100</div><div class="camp-status cs-on">â— Active</div></div></div>
+                    <div class="camp-row cb"><div class="camp-icon ci-b"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A6EA8" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="camp-name">ANOC Change Communication &amp; Support</div><div class="camp-sub">All LOB Â· 49,950 members Â· Proactive ANOC navigation outreach</div></div><div class="camp-right"><div class="camp-count">49,950</div><div class="camp-status cs-on">â— Active</div></div></div>
+                    <div class="camp-row ca"><div class="camp-icon ci-a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4770A" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="camp-name">AEP Pre-Season Engagement Campaign</div><div class="camp-sub">All LOB Â· 49,950 members Â· Launching September 1</div></div><div class="camp-right"><div class="camp-count">49,950</div><div class="camp-status cs-drft">â¸ Draft</div></div></div>
+                  </div>
+                  <div class="dash-section-label" style="margin-top:4px">Campaign Engagement Progress</div>
+                  <div style="display:flex;flex-direction:column;gap:5px"><div class="prog-row"><div class="prog-lbl">Re-Connection</div><div class="prog-track"><div class="prog-fill" style="width:62%"></div></div><div class="prog-pct">62%</div></div><div class="prog-row"><div class="prog-lbl">Benefits Reminder</div><div class="prog-track"><div class="prog-fill" style="width:84%"></div></div><div class="prog-pct">84%</div></div><div class="prog-row"><div class="prog-lbl">ANOC Support</div><div class="prog-track"><div class="prog-fill pf-blue" style="width:55%"></div></div><div class="prog-pct">55%</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div><div class="laptop-foot"></div>
+      </div>
+      <div class="admin-copy">
+        <div class="admin-tag tag-camp">Managed Outreach Service</div>
+        <h3>We design, build, and run your member outreach campaigns â€” so you don't have to figure it out alone.</h3>
+        <p>Campaign strategy is one of the hardest things for an internal retention team to get right consistently. Your BookCover consultant brings proven playbooks from across our client base, adapts them to your member population, and manages execution at a scale your team couldn't sustain on its own.</p>
+        <div class="admin-feat af-blue"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="admin-f-title">Consultant-Designed Campaign Strategy</div><div class="admin-f-txt">Your BookCover consultant designs outreach campaigns based on your member population's specific risk signals, your benefit calendar, ANOC events, and AEP timelines. We bring the expertise in what works â€” you approve the strategy and we handle the rest.</div></div></div>
+        <div class="admin-feat af-blue"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div><div><div class="admin-f-title">Managed Delivery Across Every Member</div><div class="admin-f-txt">We manage the delivery of personalized member communication through the white-label member app and coordinated agent touchpoint queues â€” meeting every member where they are, with messaging tailored to their individual situation, without your team having to orchestrate each interaction.</div></div></div>
+        <div class="admin-feat af-blue"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><div class="admin-f-title">CRM-Integrated Callback Queue (Optional)</div><div class="admin-f-txt">For teams using Salesforce, high-priority member alerts can surface directly as tasks inside your existing CRM â€” so retention agents work their queue with full BookCover context pre-loaded, without leaving the tools they already know. Available as an optional integration.</div></div></div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: REPORTING -->
+    <div class="admin-panel" id="admin-2">
+      <div class="laptop-wrap">
+        <div class="laptop">
+          <div class="laptop-notch"><div class="laptop-cam"></div></div>
+          <div class="laptop-screen">
+            <div class="dash">
+              <div class="dash-nav"><div class="dash-brand"><div class="dash-brand-dot"></div>BookCover Carrier Portal</div><div class="dash-nav-items"><div class="dash-nav-lnk">Engagement</div><div class="dash-nav-lnk">Campaigns</div><div class="dash-nav-lnk on">Reports</div><div class="dash-nav-lnk">Settings</div><div class="dash-user">RC</div></div></div>
+              <div class="dash-body">
+                <div class="dash-sidebar">
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="dash-sb-lbl">Scoring</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="dash-sb-lbl">Members</div></div>
+                  <div class="dash-sb-item"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#6A8DAA" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg><div class="dash-sb-lbl">Outreach</div></div>
+                  <div class="dash-sb-item on"><svg class="dash-sb-icon" viewBox="0 0 24 24" fill="none" stroke="#0070B9" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><div class="dash-sb-lbl">Reports</div></div>
+                </div>
+                <div class="dash-content">
+                  <div class="rpt-cards"><div class="rpt-card"><div class="rpt-n">94%</div><div class="rpt-l">Book-Wide Retention Score â€” Average</div><div class="rpt-delta">â–² +4pts vs. 90 days ago</div></div><div class="rpt-card rc-amber"><div class="rpt-n">87%</div><div class="rpt-l">Active App Engagement Rate â€” All LOB</div><div class="rpt-delta" style="color:var(--amber)">â–² +12pts vs. Launch</div></div><div class="rpt-card rc-blue"><div class="rpt-n">1,203</div><div class="rpt-l">At-Risk Members Recovered This Quarter</div><div class="rpt-delta" style="color:var(--blue)">â†‘ After re-engagement outreach</div></div></div>
+                  <div class="rpt-chart-box"><div class="rpt-chart-title">Monthly Engagement Score Trend â€” Book Average</div><div class="bar-chart"><div class="bar-col"><div class="bar" style="height:30px;background:var(--teal);opacity:.4"></div><div class="bar-lbl">Jan</div></div><div class="bar-col"><div class="bar" style="height:34px;background:var(--teal);opacity:.48"></div><div class="bar-lbl">Feb</div></div><div class="bar-col"><div class="bar" style="height:32px;background:var(--teal);opacity:.5"></div><div class="bar-lbl">Mar</div></div><div class="bar-col"><div class="bar" style="height:38px;background:var(--teal);opacity:.58"></div><div class="bar-lbl">Apr</div></div><div class="bar-col"><div class="bar" style="height:43px;background:var(--teal);opacity:.66"></div><div class="bar-lbl">May</div></div><div class="bar-col"><div class="bar" style="height:48px;background:var(--teal);opacity:.75"></div><div class="bar-lbl">Jun</div></div><div class="bar-col"><div class="bar" style="height:52px;background:var(--teal);opacity:.85"></div><div class="bar-lbl">Jul</div></div><div class="bar-col"><div class="bar" style="height:56px;background:var(--teal);opacity:.95"></div><div class="bar-lbl">Aug</div></div><div class="bar-col"><div class="bar" style="height:55px;background:var(--teal)"></div><div class="bar-lbl">Sep</div></div><div class="bar-col" style="opacity:.4"><div class="bar" style="height:56px;background:var(--teal);border:1.5px dashed var(--border)"></div><div class="bar-lbl">Octâ–¸</div></div></div></div>
+                  <div class="dash-section-label">Retention Score by Line of Business</div>
+                  <div class="rpt-lob-row"><div class="rpt-lob-item"><div class="rpt-lob-lbl">MA HMO</div><div class="rpt-lob-track"><div class="rpt-lob-fill" style="width:94%;background:var(--teal)"></div></div><div class="rpt-lob-pct">94%</div></div><div class="rpt-lob-item"><div class="rpt-lob-lbl">MA PPO</div><div class="rpt-lob-track"><div class="rpt-lob-fill" style="width:91%;background:var(--teal)"></div></div><div class="rpt-lob-pct">91%</div></div><div class="rpt-lob-item"><div class="rpt-lob-lbl">D-SNP</div><div class="rpt-lob-track"><div class="rpt-lob-fill" style="width:87%;background:var(--amber)"></div></div><div class="rpt-lob-pct">87%</div></div><div class="rpt-lob-item"><div class="rpt-lob-lbl">PDP</div><div class="rpt-lob-track"><div class="rpt-lob-fill" style="width:79%;background:var(--amber)"></div></div><div class="rpt-lob-pct">79%</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div><div class="laptop-foot"></div>
+      </div>
+      <div class="admin-copy">
+        <div class="admin-tag tag-rpt">Strategic Reporting &amp; Guidance</div>
+        <h3>We don't just send you a dashboard. We tell you what it means and what to do next.</h3>
+        <p>Your BookCover consultant reviews program performance with you on a regular cadence â€” walking through engagement trends, campaign outcomes, member recovery progress, and the strategic direction for the coming weeks. The reporting is the evidence; the guidance is the value.</p>
+        <div class="admin-feat af-amber"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div><div><div class="admin-f-title">Cross-LOB Retention Performance Review</div><div class="admin-f-txt">We review engagement trends across MA, DSNP, and other product lines together with your team â€” identifying which populations are underperforming, which campaigns are working, and where we should direct resources heading into AEP.</div></div></div>
+        <div class="admin-feat af-amber"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><div class="admin-f-title">Member Recovery Reporting with Attribution</div><div class="admin-f-txt">We show you exactly how many at-risk members have been recovered through our outreach programs â€” with before-and-after engagement score comparisons that make the impact of our work concrete and measurable.</div></div></div>
+        <div class="admin-feat af-amber"><div class="admin-f-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></div><div><div class="admin-f-title">Regular Strategy Sessions with Your Consultant</div><div class="admin-f-txt">We schedule regular strategy sessions with your retention leadership â€” reviewing what's working, adjusting campaign strategy, and planning ahead for key dates like ANOC releases and AEP. You always know exactly where your program stands and where it's going.</div></div></div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: SALESFORCE INTEGRATION -->
+    <div class="admin-panel" id="admin-3">
+      <div class="laptop-wrap">
+        <div class="laptop">
+          <div class="laptop-notch"><div class="laptop-cam"></div></div>
+          <div class="laptop-screen">
+            <!-- Salesforce Lightning UI mockup -->
+            <div class="sf-wrap">
+              <div class="sf-header">
+                <div class="sf-logo">
+                  <div class="sf-logo-cloud"><svg width="14" height="10" viewBox="0 0 36 24" fill="#0070D2"><path d="M15 4a7 7 0 0 1 6.93 6.01A5 5 0 0 1 26 20H8a6 6 0 0 1-.5-12A7 7 0 0 1 15 4z"/></svg></div>
+                  Salesforce
+                </div>
+                <div class="sf-nav"><div class="sf-nav-item on">Service Console</div><div class="sf-nav-item">Members</div><div class="sf-nav-item">Campaigns</div><div class="sf-nav-item">Reports</div></div>
+                <div style="font-size:8px;color:rgba(255,255,255,.6);font-family:'Nunito',sans-serif">Retention Agent Â· RC</div>
+              </div>
+              <div class="sf-sub-header">
+                <span class="sf-breadcrumb">Contacts â€º <span>Johnson, Margaret R.</span> â€º Member Record</span>
+              </div>
+              <div class="sf-body">
+                <!-- Left: SF record -->
+                <div class="sf-left">
+                  <div class="sf-record-title">Johnson, Margaret R.</div>
+                  <div class="sf-record-type">Medicare Advantage Member Â· ID: 448-2291</div>
+                  <div class="sf-tabs"><div class="sf-tab on">Details</div><div class="sf-tab">Activity</div><div class="sf-tab">BookCover</div></div>
+                  <div class="sf-field-grid">
+                    <div class="sf-field"><div class="sf-field-label">Plan</div><div class="sf-field-val">HMO Gold Plus</div></div>
+                    <div class="sf-field"><div class="sf-field-label">LOB</div><div class="sf-field-val">Medicare Advantage</div></div>
+                    <div class="sf-field"><div class="sf-field-label">Effective Date</div><div class="sf-field-val">01/01/2023</div></div>
+                    <div class="sf-field"><div class="sf-field-label">Status</div><div class="sf-field-val" style="color:#2E844A">Active</div></div>
+                    <div class="sf-field"><div class="sf-field-label">Phone</div><div class="sf-field-val">(555) 248-9901</div></div>
+                    <div class="sf-field"><div class="sf-field-label">ZIP</div><div class="sf-field-val">90025 Â· LA, CA</div></div>
+                  </div>
+                  <div class="sf-activity">
+                    <div style="font-family:'Nunito',sans-serif;font-size:8px;font-weight:800;color:#16325C;margin-bottom:5px">Recent Activity</div>
+                    <div class="sf-activity-item"><div class="sf-activity-dot red"></div><div><div class="sf-activity-txt">Claim denied â€” PT services â€” BookCover alert generated</div><div class="sf-activity-date">3 days ago</div></div></div>
+                    <div class="sf-activity-item"><div class="sf-activity-dot red"></div><div><div class="sf-activity-txt">No app login detected â€” 90-day threshold crossed</div><div class="sf-activity-date">5 days ago</div></div></div>
+                    <div class="sf-activity-item"><div class="sf-activity-dot" style="background:#706E6B"></div><div><div class="sf-activity-txt">OTC allowance: $200 unused â€” expiring Dec 31</div><div class="sf-activity-date">2 weeks ago</div></div></div>
+                  </div>
+                </div>
+                <!-- Right: BookCover panel in SF -->
+                <div class="sf-right">
+                  <div class="sf-panel-title">
+                    <svg width="10" height="10" viewBox="0 0 26 22" fill="none" stroke="#0070B9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3 L1 18 L12 21 L12 6 Z"/><path d="M25 3 L25 18 L14 21 L14 6 Z"/><line x1="12" y1="6" x2="14" y2="6"/><polyline points="7,17 11,13 15,16 22,7"/></svg>
+                    BookCover Engagement
+                    <span class="sf-panel-badge">LIVE</span>
+                  </div>
+                  <div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:8px">
+                    <div><div class="sf-score-big">28</div><div class="sf-score-lbl">Engagement Score</div></div>
+                    <div style="flex:1">
+                      <div class="sf-prog-row"><div class="sf-prog-lbl">Engagement</div><div class="sf-prog-track"><div class="sf-prog-fill" style="width:28%;background:var(--red)"></div></div><span style="font-size:7px;color:var(--red);font-family:'Nunito',sans-serif;font-weight:800">Low</span></div>
+                      <div class="sf-prog-row"><div class="sf-prog-lbl">Satisfaction</div><div class="sf-prog-track"><div class="sf-prog-fill" style="width:22%;background:var(--red)"></div></div><span style="font-size:7px;color:var(--red);font-family:'Nunito',sans-serif;font-weight:800">At Risk</span></div>
+                      <div class="sf-prog-row"><div class="sf-prog-lbl">Benefit Use</div><div class="sf-prog-track"><div class="sf-prog-fill" style="width:5%;background:var(--amber)"></div></div><span style="font-size:7px;color:var(--amber);font-family:'Nunito',sans-serif;font-weight:800">0%</span></div>
+                    </div>
+                  </div>
+                  <div style="font-family:'Nunito',sans-serif;font-size:8px;font-weight:800;color:#16325C;margin-bottom:4px">Retention Signals</div>
+                  <div class="sf-signal-list">
+                    <div class="sf-signal s-red"><div class="sf-signal-txt">âš  Claim denied 3 days ago â€” no follow-up</div></div>
+                    <div class="sf-signal s-red"><div class="sf-signal-txt">âš  No app login in 90 days</div></div>
+                    <div class="sf-signal"><div class="sf-signal-txt">âš¡ OTC benefit $200 unused â€” expires Dec 31</div></div>
+                    <div class="sf-signal s-ok"><div class="sf-signal-txt">âœ“ Plan active Â· 3 years with carrier</div></div>
+                  </div>
+                  <div class="sf-action-row">
+                    <div class="sf-action-btn primary">Log Call</div>
+                    <div class="sf-action-btn">Send App Invite</div>
+                    <div class="sf-action-btn">Enroll Campaign</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div><div class="laptop-foot"></div>
+      </div>
+      <div class="admin-copy">
+        <div class="admin-tag tag-sf">Salesforce Integration â€” Available Add-On</div>
+        <h3>BookCover engagement data inside Salesforce â€” available for teams who want it, without disrupting those who don't.</h3>
+        <p>For organizations using Salesforce as their retention CRM, BookCover offers an optional integration that surfaces member engagement scores, retention signals, and outreach opportunities as native components inside member records. This integration is available as an add-on and typically involves a custom implementation engagement to configure for your specific Salesforce org and workflow.</p>
+        <div class="admin-feat af-sf"><div class="admin-f-icon" style="background:#0070D2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="admin-f-title">Engagement Score on Every Member Record</div><div class="admin-f-txt">When configured, BookCover's live engagement score and signal breakdown appear as a component on member contact records in Salesforce â€” giving agents the full retention picture before they pick up the phone, without switching applications.</div></div></div>
+        <div class="admin-feat af-sf"><div class="admin-f-icon" style="background:#0070D2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="admin-f-title">Automated Tasks &amp; Engagement Opportunity Alerts</div><div class="admin-f-txt">When a member's engagement score drops or a re-engagement trigger fires, BookCover can automatically create a prioritized Task in Salesforce â€” appearing in each agent's daily queue with full member context, recommended actions, and campaign enrollment options.</div></div></div>
+        <div class="admin-feat af-sf"><div class="admin-f-icon" style="background:#0070D2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div><div><div class="admin-f-title">Reporting via Salesforce's Native Engine</div><div class="admin-f-txt">With the integration in place, BookCover data becomes accessible through Salesforce's native reporting tools â€” enabling your operations team to build retention dashboards and measure campaign effectiveness alongside your existing Salesforce KPIs, all in one place.</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Our Team — BookCover Member Retention Services</title>
+<!--
+  ══════════════════════════════════════════════════════════════
+  FORM ACTIVATION — READ BEFORE GOING LIVE
+  ══════════════════════════════════════════════════════════════
+  This form submits via Formspree (https://formspree.io).
+
+  To activate:
+  1. Create a free account at formspree.io
+  2. Click "New Form" and name it "BookCover Contact"
+  3. Copy your form's unique endpoint (e.g. https://formspree.io/f/xabc1234)
+  4. Replace the FORMSPREE_ENDPOINT constant below with your endpoint
+  5. Formspree will email submissions to the address on your account
+
+  The form includes a mailto: fallback if Formspree is not yet configured.
+  ══════════════════════════════════════════════════════════════
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pale:     #E5F2FB;
+  --navy:     #003087;
+  --pine:     #1A4A8A;
+  --blue:     #0070B9;
+  --blue-h:   #005A9C;
+  --blue-lt:  #CBE8F6;
+  --gold:     #C08020;
+  --gold-l:   #F5C158;
+  --white:    #FFFFFF;
+  --ice:      #EEF6FB;
+  --steel:    #2A4A6E;
+  --muted:    #6A8DAA;
+  --border:   #A8CCE4;
+  --border-m: #C2DCF0;
+  --shadow:   rgba(0,48,135,0.08);
+  --amber:    #D4770A;
+  --red:      #B83232;
+  --red-lt:   #FDECEA;
+  --green:    #1A7A4A;
+  --green-lt: #E6F7EE;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:var(--pale);color:var(--navy);overflow-x:hidden;min-height:100vh}
+
+/* ── NAV ── */
+nav{background:white;padding:0 64px;height:70px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,48,135,.08)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-mark{width:38px;height:38px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.nav-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:400;color:var(--navy);letter-spacing:-.3px}
+.nav-name strong{font-weight:900}
+.nav-sub{font-size:10px;color:var(--muted);letter-spacing:.5px}
+.nav-back{font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--blue-h)}
+@media(max-width:768px){nav{padding:0 20px}}
+
+/* ── PAGE HERO ── */
+.page-hero{background:var(--navy);padding:64px 64px 56px;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(0,112,185,.1);pointer-events:none}
+.page-hero::after{content:'';position:absolute;bottom:-40px;left:-30px;width:220px;height:220px;border-radius:50%;background:rgba(245,193,88,.05);pointer-events:none}
+.page-hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.page-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,112,185,.18);border:1.5px solid rgba(0,112,185,.3);border-radius:100px;padding:5px 14px;margin-bottom:20px}
+.page-hero-badge span{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:var(--gold-l);letter-spacing:.8px}
+.badge-dot{width:6px;height:6px;background:var(--gold-l);border-radius:50%}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(28px,3vw,44px);font-weight:900;color:white;line-height:1.15;margin-bottom:16px;letter-spacing:-0.5px}
+.page-hero h1 .gold{color:var(--gold-l)}
+.page-hero p{font-size:16px;line-height:1.8;color:rgba(255,255,255,.7);max-width:600px}
+@media(max-width:768px){.page-hero{padding:48px 24px}}
+
+/* ── MAIN LAYOUT ── */
+.contact-wrap{max-width:1100px;margin:0 auto;padding:56px 64px 80px;display:grid;grid-template-columns:1fr 380px;gap:52px;align-items:start}
+@media(max-width:960px){.contact-wrap{grid-template-columns:1fr;padding:40px 24px 60px}}
+
+/* ── FORM CARD ── */
+.form-card{background:white;border-radius:20px;padding:48px 44px;box-shadow:0 8px 40px var(--shadow);border:1px solid var(--border-m)}
+@media(max-width:600px){.form-card{padding:28px 20px}}
+.form-section-label{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--border-m);display:block;margin-top:32px}
+.form-section-label:first-of-type{margin-top:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.form-group.full{grid-column:1/-1}
+label{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--steel);letter-spacing:.3px}
+label .req{color:var(--blue);margin-left:2px}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;
+  font-family:'Open Sans',sans-serif;font-size:14px;color:var(--navy);
+  background:white;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+input[type=text]:focus,input[type=email]:focus,input[type=tel]:focus,input[type=date]:focus,select:focus,textarea:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,112,185,.1);
+}
+input.error,select.error,textarea.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(184,50,50,.08)}
+.field-error{font-size:11px;color:var(--red);font-weight:600;display:none}
+.field-error.show{display:block}
+textarea{resize:vertical;min-height:100px;line-height:1.6}
+select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236A8DAA' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+select option{color:var(--navy)}
+
+/* Checkbox group */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.check-grid{grid-template-columns:1fr}}
+.check-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s}
+.check-item:hover{border-color:var(--blue);background:var(--ice)}
+.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--blue);cursor:pointer;flex-shrink:0}
+.check-item label{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--steel);cursor:pointer;margin:0;letter-spacing:0}
+.check-item:has(input:checked){border-color:var(--blue);background:var(--blue-lt)}
+.check-item:has(input:checked) label{color:var(--navy)}
+
+/* Radio group */
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s}
+.radio-item:hover{border-color:var(--blue);background:var(--ice)}
+.radio-item input[type=radio]{width:15px;height:15px;accent-color:var(--blue);cursor:pointer;flex-shrink:0}
+.radio-item label{font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--steel);cursor:pointer;margin:0;letter-spacing:0}
+.radio-item:has(input:checked){border-color:var(--blue);background:var(--blue-lt)}
+.radio-item:has(input:checked) label{color:var(--navy)}
+
+/* Date/time row */
+.datetime-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:600px){.datetime-row{grid-template-columns:1fr}}
+
+/* Submit button */
+.submit-btn{width:100%;padding:15px 28px;background:var(--blue);color:white;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:background .2s,transform .15s;margin-top:28px;display:flex;align-items:center;justify-content:center;gap:10px}
+.submit-btn:hover{background:var(--blue-h);transform:translateY(-1px)}
+.submit-btn:disabled{background:var(--muted);cursor:not-allowed;transform:none}
+.submit-btn .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.submit-btn.loading .spinner{display:block}
+.submit-btn.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form-note{font-size:11px;color:var(--muted);margin-top:14px;text-align:center;line-height:1.6}
+
+/* ── SUCCESS STATE ── */
+.success-state{display:none;text-align:center;padding:48px 24px}
+.success-state.show{display:block}
+.success-icon{width:72px;height:72px;background:var(--green-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.success-state h3{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--navy);margin-bottom:12px}
+.success-state p{font-size:15px;color:var(--steel);line-height:1.8;max-width:400px;margin:0 auto 28px}
+.success-detail{background:var(--ice);border-radius:12px;padding:20px 24px;border:1px solid var(--border-m);text-align:left;margin-bottom:24px}
+.success-detail-row{display:flex;gap:10px;margin-bottom:8px;font-size:13px;color:var(--steel)}
+.success-detail-row:last-child{margin-bottom:0}
+.success-detail-lbl{font-family:'Nunito',sans-serif;font-weight:800;color:var(--navy);min-width:120px;flex-shrink:0}
+.back-link{font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--blue-h)}
+
+/* ── SIDEBAR ── */
+.sidebar{}
+.sidebar-card{background:white;border-radius:16px;padding:32px 28px;border:1px solid var(--border-m);box-shadow:0 4px 20px var(--shadow);margin-bottom:20px}
+.sidebar-card:last-child{margin-bottom:0}
+.sidebar-eyebrow{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:block}
+.sidebar-card h3{font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--navy);margin-bottom:10px;line-height:1.3}
+.sidebar-card p{font-size:13px;color:var(--steel);line-height:1.7}
+.sidebar-steps{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.sidebar-step{display:flex;gap:14px;align-items:flex-start}
+.step-num{width:26px;height:26px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;color:white;flex-shrink:0;margin-top:1px}
+.step-txt{font-size:13px;color:var(--steel);line-height:1.6}
+.step-title{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:2px}
+.trust-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--steel)}
+.trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--blue)}
+.sidebar-divider{height:1px;background:var(--border-m);margin:20px 0}
+.contact-direct{font-size:13px;color:var(--steel);line-height:1.7}
+.contact-direct a{color:var(--blue);font-weight:700;text-decoration:none}
+.contact-direct a:hover{text-decoration:underline}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08)}
+.f-name{font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:white}
+.f-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.f-copy{font-size:11px;color:rgba(255,255,255,.35)}
+@media(max-width:768px){footer{flex-direction:column;gap:12px;padding:24px 20px;text-align:center}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="BookCover_Carrier_v4.html" class="nav-logo">
+    <div class="nav-mark">
+      <svg width="22" height="20" viewBox="0 0 26 22" fill="none" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 3 L1 18 L12 21 L12 6 Z"/><path d="M25 3 L25 18 L14 21 L14 6 Z"/>
+        <line x1="12" y1="6" x2="14" y2="6"/><polyline points="7,17 11,13 15,16 22,7"/><polyline points="18,7 22,7 22,11"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-name"><strong>Book</strong>Cover</div>
+      <div class="nav-sub">Managed Member Engagement &amp; Retention Services</div>
+    </div>
+  </a>
+  <a href="BookCover_Carrier_v4.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Overview
+  </a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-badge"><div class="badge-dot"></div><span>Let's Work Together</span></div>
+    <h1>Tell Us About<br>Your <span class="gold">Members.</span></h1>
+    <p>We work with a select group of health plans each year. Fill in the form and your dedicated BookCover consultant will be in touch at the time that works best for you.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="contact-wrap">
+
+  <!-- FORM -->
+  <div class="form-card" id="form-card">
+
+    <!-- Form itself -->
+    <form id="contact-form" novalidate>
+
+      <!-- CONTACT INFORMATION -->
+      <span class="form-section-label">Your Contact Information</span>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name">
+          <span class="field-error" id="err-firstName">Please enter your first name</span>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name">
+          <span class="field-error" id="err-lastName">Please enter your last name</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="title">Title / Role <span class="req">*</span></label>
+          <input type="text" id="title" name="title" placeholder="VP of Member Retention" autocomplete="organization-title">
+          <span class="field-error" id="err-title">Please enter your title</span>
+        </div>
+        <div class="form-group">
+          <label for="org">Organization Name <span class="req">*</span></label>
+          <input type="text" id="org" name="organization" placeholder="HealthPlan Inc." autocomplete="organization">
+          <span class="field-error" id="err-org">Please enter your organization name</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Work Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="jane@healthplan.com" autocomplete="email">
+          <span class="field-error" id="err-email">Please enter a valid email address</span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
+        </div>
+      </div>
+
+      <!-- ABOUT YOUR PROGRAM -->
+      <span class="form-section-label">About Your Program</span>
+
+      <div class="form-group">
+        <label>Lines of Business <span style="font-weight:400;color:var(--muted)">(select all that apply)</span></label>
+        <div class="check-grid" style="margin-top:4px">
+          <div class="check-item">
+            <input type="checkbox" id="lob-ma" name="lob" value="Medicare Advantage">
+            <label for="lob-ma">Medicare Advantage</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="lob-supp" name="lob" value="Medicare Supplement">
+            <label for="lob-supp">Medicare Supplement</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="lob-dsnp" name="lob" value="Medicaid / D-SNP">
+            <label for="lob-dsnp">Medicaid / D-SNP</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="lob-aca" name="lob" value="ACA / Individual Market">
+            <label for="lob-aca">ACA / Individual Market</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="lob-pdp" name="lob" value="Part D / PDP">
+            <label for="lob-pdp">Part D / PDP</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="lob-other" name="lob" value="Other">
+            <label for="lob-other">Other</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Approximate Member Count</label>
+        <div class="radio-group" style="margin-top:4px">
+          <div class="radio-item">
+            <input type="radio" id="mc-1" name="memberCount" value="Under 50,000">
+            <label for="mc-1">Under 50,000 members</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="mc-2" name="memberCount" value="50,000 – 250,000">
+            <label for="mc-2">50,000 – 250,000 members</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="mc-3" name="memberCount" value="250,000 – 1,000,000">
+            <label for="mc-3">250,000 – 1,000,000 members</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="mc-4" name="memberCount" value="Over 1,000,000">
+            <label for="mc-4">Over 1,000,000 members</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="challenge">What's the biggest retention challenge you're facing right now?</label>
+        <textarea id="challenge" name="challenge" placeholder="e.g. We struggle to identify at-risk members before AEP, our team doesn't have the capacity to reach everyone..."></textarea>
+      </div>
+
+      <!-- SCHEDULE YOUR CONVERSATION -->
+      <span class="form-section-label">Schedule Your Conversation</span>
+
+      <div class="datetime-row" style="margin-bottom:18px">
+        <div class="form-group" style="margin-bottom:0">
+          <label for="prefDate">Preferred Date <span class="req">*</span></label>
+          <input type="date" id="prefDate" name="preferredDate" min="">
+          <span class="field-error" id="err-prefDate">Please select a preferred date</span>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label for="prefTime">Preferred Time <span class="req">*</span></label>
+          <select id="prefTime" name="preferredTime">
+            <option value="" disabled selected>Select a time</option>
+            <option value="Morning (8am – 10am)">Morning (8am – 10am)</option>
+            <option value="Mid-Morning (10am – 12pm)">Mid-Morning (10am – 12pm)</option>
+            <option value="Early Afternoon (12pm – 2pm)">Early Afternoon (12pm – 2pm)</option>
+            <option value="Afternoon (2pm – 4pm)">Afternoon (2pm – 4pm)</option>
+            <option value="Late Afternoon (4pm – 6pm)">Late Afternoon (4pm – 6pm)</option>
+          </select>
+          <span class="field-error" id="err-prefTime">Please select a preferred time</span>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label for="timezone">Timezone <span class="req">*</span></label>
+          <select id="timezone" name="timezone">
+            <option value="" disabled selected>Select timezone</option>
+            <option value="Eastern (ET)">Eastern (ET)</option>
+            <option value="Central (CT)">Central (CT)</option>
+            <option value="Mountain (MT)">Mountain (MT)</option>
+            <option value="Pacific (PT)">Pacific (PT)</option>
+            <option value="Alaska (AKT)">Alaska (AKT)</option>
+            <option value="Hawaii (HT)">Hawaii (HT)</option>
+          </select>
+          <span class="field-error" id="err-timezone">Please select your timezone</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="hearAbout">How did you hear about BookCover?</label>
+          <select id="hearAbout" name="howHeard">
+            <option value="" disabled selected>Select one</option>
+            <option value="Industry conference or event">Industry conference or event</option>
+            <option value="Colleague or peer referral">Colleague or peer referral</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Web search">Web search</option>
+            <option value="Industry publication or article">Industry publication or article</option>
+            <option value="BookCover outreach">BookCover outreach</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="altDate">Alternate Date (optional)</label>
+          <input type="date" id="altDate" name="alternateDate" min="">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Anything else you'd like us to know before we connect?</label>
+        <textarea id="notes" name="additionalNotes" placeholder="Share any context that will help us prepare for our conversation..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">
+        <span class="btn-text">Send My Request →</span>
+        <div class="spinner"></div>
+      </button>
+      <p class="form-note">We typically respond within one business day. Your information is used solely to schedule and prepare for our conversation — we don't share it with third parties.</p>
+
+    </form>
+
+    <!-- Success state (hidden until submission) -->
+    <div class="success-state" id="success-state">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A7A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3>Request Received — Thank You</h3>
+      <p>Your dedicated BookCover consultant will reach out to confirm your conversation at the time you've selected. We're looking forward to learning more about your members.</p>
+      <div class="success-detail" id="success-detail">
+        <!-- Populated by JS -->
+      </div>
+      <a href="BookCover_Carrier_v4.html" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Overview
+      </a>
+    </div>
+
+  </div><!-- /form-card -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="sidebar-card">
+      <span class="sidebar-eyebrow">What Happens Next</span>
+      <h3>Your path to a dedicated retention consultant</h3>
+      <div class="sidebar-steps">
+        <div class="sidebar-step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">We review your request</div>
+            <div class="step-txt">Your information is reviewed by our team and matched to the consultant best suited to your lines of business and member population.</div>
+          </div>
+        </div>
+        <div class="sidebar-step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">We confirm your time</div>
+            <div class="step-txt">You'll receive a calendar invitation for your preferred date and time, typically within one business day of your request.</div>
+          </div>
+        </div>
+        <div class="sidebar-step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">We come prepared</div>
+            <div class="step-txt">Your consultant reviews your program details before the call so we spend our time on strategy, not introductions.</div>
+          </div>
+        </div>
+        <div class="sidebar-step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">We define the opportunity together</div>
+            <div class="step-txt">Our first conversation is about understanding your members, your team, and your retention challenges — not pitching software.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <span class="sidebar-eyebrow">What We Bring to Every Engagement</span>
+      <div class="trust-list">
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          A dedicated retention consultant assigned to your account
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Expert member scoring and engagement analysis
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg>
+          Managed outreach campaigns we run on your behalf
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Regular strategy sessions and transparent reporting
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/></svg>
+          White-label member experience under your brand
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          HIPAA-compliant, CMS-guideline aligned service delivery
+        </div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="contact-direct">
+        Prefer to reach us directly?<br>
+        <a href="mailto:carriers@bookcover.com">carriers@bookcover.com</a>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+
+</div><!-- /contact-wrap -->
+
+<footer>
+  <div>
+    <div class="f-name">BookCover</div>
+    <div class="f-sub">Managed Member Engagement &amp; Retention Services for Health Plans</div>
+  </div>
+  <div class="f-copy">© 2026 BookCover. All rights reserved.</div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+//  CONFIGURATION
+//  Replace with your Formspree endpoint after registering at formspree.io
+//  e.g. 'https://formspree.io/f/xabc1234'
+// ════════════════════════════════════════════════════════════════
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FALLBACK_EMAIL = 'carriers@bookcover.com';
+
+// ── Set minimum date to today ──────────────────────────────────
+(function() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('prefDate').min = today;
+  document.getElementById('altDate').min = today;
+  // Set default preferred date to next business day
+  const d = new Date();
+  d.setDate(d.getDate() + (d.getDay() === 5 ? 3 : d.getDay() === 6 ? 2 : 1));
+  document.getElementById('prefDate').value = d.toISOString().split('T')[0];
+})();
+
+// ── Validation helpers ─────────────────────────────────────────
+function showError(fieldId, errId) {
+  const field = document.getElementById(fieldId);
+  const err   = document.getElementById('err-' + errId);
+  field.classList.add('error');
+  if (err) err.classList.add('show');
+}
+function clearError(fieldId, errId) {
+  const field = document.getElementById(fieldId);
+  const err   = document.getElementById('err-' + errId);
+  field.classList.remove('error');
+  if (err) err.classList.remove('show');
+}
+function isValidEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
+
+// Clear errors on input
+['firstName','lastName','title','org','email','prefDate','prefTime','timezone'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => clearError(id, id));
+  if (el) el.addEventListener('change', () => clearError(id, id));
+});
+
+// ── Gather checked checkboxes ──────────────────────────────────
+function getCheckedLOBs() {
+  return Array.from(document.querySelectorAll('input[name="lob"]:checked'))
+    .map(cb => cb.value).join(', ') || 'Not specified';
+}
+function getSelectedRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : 'Not specified';
+}
+
+// ── Format date nicely ─────────────────────────────────────────
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const [y, m, d] = dateStr.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[parseInt(m,10)-1]} ${parseInt(d,10)}, ${y}`;
+}
+
+// ── Build success detail HTML ──────────────────────────────────
+function buildSuccessDetail(data) {
+  const rows = [
+    ['Contact',   `${data.firstName} ${data.lastName} — ${data.title}`],
+    ['Organization', data.organization],
+    ['Email',     data.email],
+    ['Preferred Time', `${formatDate(data.preferredDate)}, ${data.preferredTime} ${data.timezone}`],
+    ['Lines of Business', data.lob],
+    ['Member Count', data.memberCount],
+  ];
+  return rows.map(([l,v]) =>
+    `<div class="success-detail-row"><span class="success-detail-lbl">${l}</span><span>${v}</span></div>`
+  ).join('');
+}
+
+// ── Form submission ────────────────────────────────────────────
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Collect values
+  const v = {
+    firstName:     document.getElementById('firstName').value.trim(),
+    lastName:      document.getElementById('lastName').value.trim(),
+    title:         document.getElementById('title').value.trim(),
+    organization:  document.getElementById('org').value.trim(),
+    email:         document.getElementById('email').value.trim(),
+    phone:         document.getElementById('phone').value.trim(),
+    lob:           getCheckedLOBs(),
+    memberCount:   getSelectedRadio('memberCount'),
+    challenge:     document.getElementById('challenge').value.trim(),
+    preferredDate: document.getElementById('prefDate').value,
+    preferredTime: document.getElementById('prefTime').value,
+    timezone:      document.getElementById('timezone').value,
+    alternateDate: document.getElementById('altDate').value,
+    howHeard:      document.getElementById('hearAbout').value,
+    notes:         document.getElementById('notes').value.trim(),
+  };
+
+  // Validate required fields
+  let valid = true;
+  const required = [
+    ['firstName','firstName'], ['lastName','lastName'],
+    ['title','title'], ['org','org'], ['email','email'],
+    ['prefDate','prefDate'], ['prefTime','prefTime'], ['timezone','timezone']
+  ];
+  required.forEach(([fid, eid]) => {
+    if (!document.getElementById(fid).value.trim()) {
+      showError(fid, eid); valid = false;
+    } else {
+      clearError(fid, eid);
+    }
+  });
+  if (v.email && !isValidEmail(v.email)) {
+    showError('email', 'email'); valid = false;
+  }
+  if (!valid) {
+    document.querySelector('.error')?.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // UI: loading state
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.classList.add('loading');
+
+  // Build form message for email
+  const message = [
+    `=== BookCover Contact Request ===`,
+    ``,
+    `CONTACT`,
+    `Name: ${v.firstName} ${v.lastName}`,
+    `Title: ${v.title}`,
+    `Organization: ${v.organization}`,
+    `Email: ${v.email}`,
+    `Phone: ${v.phone || 'Not provided'}`,
+    ``,
+    `PROGRAM`,
+    `Lines of Business: ${v.lob}`,
+    `Member Count: ${v.memberCount}`,
+    `Retention Challenge: ${v.challenge || 'Not provided'}`,
+    ``,
+    `SCHEDULING`,
+    `Preferred Date: ${formatDate(v.preferredDate)}`,
+    `Preferred Time: ${v.preferredTime}`,
+    `Timezone: ${v.timezone}`,
+    `Alternate Date: ${v.alternateDate ? formatDate(v.alternateDate) : 'None'}`,
+    ``,
+    `OTHER`,
+    `How They Heard: ${v.howHeard || 'Not specified'}`,
+    `Additional Notes: ${v.notes || 'None'}`,
+  ].join('\n');
+
+  let submitted = false;
+
+  // Try Formspree first (if endpoint is configured)
+  if (FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+    try {
+      const payload = { ...v, message };
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) submitted = true;
+    } catch(err) {
+      // fall through to mailto
+    }
+  }
+
+  // Fallback: open mailto with pre-filled content
+  if (!submitted) {
+    const subject = encodeURIComponent(`BookCover Contact Request — ${v.organization}`);
+    const body    = encodeURIComponent(message);
+    const mailtoLink = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+    // Open in new window so user doesn't lose the page
+    window.open(mailtoLink, '_blank');
+    submitted = true;
+  }
+
+  // Show success
+  document.getElementById('contact-form').style.display = 'none';
+  const successEl = document.getElementById('success-state');
+  document.getElementById('success-detail').innerHTML = buildSuccessDetail({
+    ...v,
+    lob: v.lob,
+    memberCount: v.memberCount,
+  });
+  successEl.classList.add('show');
+  document.getElementById('form-card').scrollIntoView({behavior:'smooth', block:'start'});
+});
+</script>
+
+</body>
+</html>
