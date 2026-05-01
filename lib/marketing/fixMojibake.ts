@@ -15,12 +15,55 @@ function buildUnicodeToByteMap(): Map<number, number> {
 
 const UNICODE_TO_BYTE = buildUnicodeToByteMap();
 
+/**
+ * UTF-8 continuation bytes 0x80–0xBF are often saved as smart quotes / punctuation
+ * instead of the raw C1 controls WHATWG windows-1252 gives for 0x80–0x9F.
+ */
+function byteFromMojibakeChar(
+  cp: number,
+  j: number,
+  cp0: number,
+  cp1: number,
+): number | undefined {
+  if (j === 2 && cp0 === 0xe2 && cp1 === 0x161 && cp === 0x20) return 0xa0;
+  if (j < 2 || cp0 !== 0xf0 || cp1 !== 0x178) return undefined;
+  switch (cp) {
+    case 0x2018:
+      return 0x91;
+    case 0x2019:
+    case 0x27:
+      return 0x92;
+    case 0x201c:
+      return 0x93;
+    case 0x201d:
+      return 0x94;
+    case 0x2039:
+      return 0x8b;
+    case 0x203a:
+      return 0x9b;
+    // Latin letters substituted for C1 / continuation bytes in some exports
+    case 0x17d:
+      return 0x8e;
+    case 0x17e:
+      return 0x9e;
+    case 0x160:
+      return 0x8a;
+    default:
+      return undefined;
+  }
+}
+
 function tryUtf8BytesFromMojibake(chunk: string): string | null {
+  const chars = [...chunk];
   const bytes: number[] = [];
-  for (const c of chunk) {
+  for (let j = 0; j < chars.length; j++) {
+    const c = chars[j]!;
     const cp = c.codePointAt(0)!;
     if (cp > 0xffff) return null;
-    const b = UNICODE_TO_BYTE.get(cp);
+    const cp0 = chars[0]!.codePointAt(0)!;
+    const cp1 = chars.length > 1 ? chars[1]!.codePointAt(0)! : 0;
+    const b =
+      UNICODE_TO_BYTE.get(cp) ?? byteFromMojibakeChar(cp, j, cp0, cp1);
     if (b === undefined) return null;
     bytes.push(b);
   }
@@ -41,6 +84,18 @@ function isEmojiOrSymbolResult(t: string): boolean {
   return false;
 }
 
+function isRecoveredSymbolOrPunct(t: string): boolean {
+  if (isEmojiOrSymbolResult(t)) return true;
+  for (const ch of t) {
+    const p = ch.codePointAt(0)!;
+    if (p >= 0x2000 && p <= 0x206f) return true;
+    if (p >= 0x20d0 && p <= 0x20ff) return true;
+    if (p >= 0x2100 && p <= 0x2bff) return true;
+    if (p === 0xa0) return true;
+  }
+  return false;
+}
+
 /** Replace UTF-8–as–mojibake clusters starting with ð (U+00F0). */
 function replaceLeadingF0Clusters(html: string): string {
   let out = "";
@@ -54,12 +109,45 @@ function replaceLeadingF0Clusters(html: string): string {
       continue;
     }
     let replaced = false;
-    const max = Math.min(20, html.length - i);
+    const max = Math.min(24, html.length - i);
     for (let len = max; len >= 4; len--) {
       const chunk = html.slice(i, i + len);
       if (chunk.includes("<")) break;
       const t = tryUtf8BytesFromMojibake(chunk);
       if (t && isEmojiOrSymbolResult(t)) {
+        out += t;
+        i += len;
+        replaced = true;
+        break;
+      }
+    }
+    if (!replaced) {
+      out += html[i]!;
+      i += html[i]!.length;
+    }
+  }
+  return out;
+}
+
+/** Replace UTF-8–as–mojibake clusters starting with â (U+00E2). */
+function replaceLeadingE2Clusters(html: string): string {
+  let out = "";
+  let i = 0;
+  while (i < html.length) {
+    const cp = html.codePointAt(i)!;
+    if (cp !== 0xe2) {
+      const unit = html[i]!;
+      out += unit;
+      i += unit.length;
+      continue;
+    }
+    let replaced = false;
+    const max = Math.min(12, html.length - i);
+    for (let len = max; len >= 3; len--) {
+      const chunk = html.slice(i, i + len);
+      if (chunk.includes("<")) break;
+      const t = tryUtf8BytesFromMojibake(chunk);
+      if (t && isRecoveredSymbolOrPunct(t)) {
         out += t;
         i += len;
         replaced = true;
@@ -83,11 +171,13 @@ export function fixMojibake(html: string): string {
   // Em / en dash (UTF-8 E2 80 94 / E2 80 93) — third char is U+201D / U+201C, not ASCII "
   s = s.replaceAll("\u00e2\u20ac\u201d", "\u2014");
   s = s.replaceAll("\u00e2\u20ac\u201c", "\u2013");
+  s = s.replaceAll("\u00e2\u20ac\u0022", "\u2014");
 
   s = s.replaceAll("\u00c3\u2014", "\u00d7");
 
   s = s.replaceAll("\u00e2\u0153\u201c", "\u2713");
-  s = s.replaceAll("\u00e2\u0099\u2026", "\u2714");
+  s = s.replaceAll("\u00e2\u0153\u201d", "\u2714");
+  s = s.replaceAll("\u00e2\u0153\u2026", "\u2705");
 
   s = s.replaceAll("\u00c2\u00a9", "\u00a9");
   s = s.replaceAll("\u00c2\u00b7", "\u00b7");
@@ -102,6 +192,15 @@ export function fixMojibake(html: string): string {
   s = s.replaceAll("\u00e2\u2020\u2018", "\u2191");
   s = s.replaceAll("\u00e2\u20ac\u00ba", "\u203a");
 
+  // → (UTF-8 E2 86 92) misread as CP1252
+  s = s.replaceAll("\u00e2\u2020\u2019", "\u2192");
+  s = s.replaceAll("\u00e2\u2020\u201d", "\u2192");
+
+  // Known broken 4-byte sequences in source HTML (wrong last byte / editor substitution)
+  s = s.replaceAll("\u00f0\u0178\u201d\u0081", "\u{1F91D}");
+  s = s.replaceAll("\u00f0\u0178\u201c\u00a3", "\u{1F4E2}");
+
+  s = replaceLeadingE2Clusters(s);
   s = replaceLeadingF0Clusters(s);
 
   return s;
