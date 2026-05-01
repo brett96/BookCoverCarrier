@@ -28,10 +28,16 @@ Production Next.js 15 (App Router) app: marketing pages, contact lead capture (P
 
 ## Deploy on Vercel
 
+**If the build log says `Skipping drizzle push and seed` and Vercel says no environment variables are set, the deployment did not fail on Next.js — but the database was never migrated and no admin user was created.** Add variables below (Production at minimum), save, then **Redeploy**.
+
 1. Push this repo to GitHub and import it in the Vercel dashboard.
-2. Add **Vercel Postgres** (or connect Neon); ensure `DATABASE_URL` (or `POSTGRES_URL`) is set.
-3. Set environment variables from `.env.example` (`AUTH_SECRET` from `openssl rand -base64 32`, production `AUTH_URL` to your canonical site URL, Gmail + lead notification email, admin seed credentials for the first deploy).
-4. Deploy. The `postbuild` script runs `drizzle-kit push --force` and the idempotent `seed:admin` script when `DATABASE_URL` or `POSTGRES_URL` is present (skipped for preview builds without a database if you omit the variable).
+2. In the project **Settings → Environment Variables**, add (for **Production** and any preview envs that should use a real DB):
+   - **Database**: Create **Storage → Postgres** (Neon) on the project, or paste a Neon connection string. Vercel usually injects `POSTGRES_URL` (and sometimes `DATABASE_URL`). The app resolves either — see `lib/db/url.ts`.
+   - **Auth**: `AUTH_SECRET` (`openssl rand -base64 32`), `AUTH_URL` = your production URL (e.g. `https://your-project.vercel.app`).
+   - **Gmail** (optional until contact form email is needed): `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `LEAD_NOTIFICATION_EMAIL`.
+   - **First admin** (for `postbuild` seed): `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD` (change after first login).
+3. Deploy again. After `next build`, `postbuild` runs `drizzle-kit push --force` and `scripts/seed-admin.ts` when any supported database URL env is present.
+4. If you use Preview deployments without a database, either omit the DB URL for Preview or use a separate Neon branch and scoped env vars — otherwise postbuild will try to push against whatever URL you set.
 
 ## Scripts
 

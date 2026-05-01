@@ -1,10 +1,10 @@
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
+import { getResolvedDatabaseUrl } from "./url";
 
 export function getDb() {
-  const connectionString =
-    process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? "";
+  const connectionString = getResolvedDatabaseUrl();
   if (!connectionString) {
     return null;
   }

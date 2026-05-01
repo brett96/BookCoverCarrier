@@ -1,11 +1,18 @@
 import { execSync } from "node:child_process";
+import { getResolvedDatabaseUrl } from "../lib/db/url";
 
-const url = process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
+const url = getResolvedDatabaseUrl();
 if (!url) {
   console.log(
-    "[postbuild] Skipping drizzle push and seed: no DATABASE_URL or POSTGRES_URL"
+    "[postbuild] Skipping drizzle push and seed: no database URL in env " +
+      "(set DATABASE_URL or POSTGRES_URL from Vercel Postgres / Neon, then redeploy)"
   );
   process.exit(0);
+}
+
+// drizzle-kit and some tools expect DATABASE_URL
+if (!process.env.DATABASE_URL?.trim()) {
+  process.env.DATABASE_URL = url;
 }
 
 console.log("[postbuild] drizzle-kit push");
