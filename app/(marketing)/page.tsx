@@ -1,14 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { CarrierExperience } from "@/components/marketing/CarrierExperience";
+import { fixMojibake } from "@/lib/marketing/fixMojibake";
 
 function clean(html: string) {
-  return html
+  return fixMojibake(html)
     .replace(/BookCover_Contact\.html/g, "/contact")
     .replace(/\s*onclick="[^"]*"/g, "")
-    .replace(/href="#"/g, 'href="/"')
-    .replace(/â€"/g, "\u2014")
-    .replace(/â€™/g, "'");
+    .replace(/href="#"/g, 'href="/"');
 }
 
 export default function HomePage() {
