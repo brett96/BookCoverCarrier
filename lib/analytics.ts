@@ -6,6 +6,7 @@ import {
   eq,
   gte,
   isNotNull,
+  max,
 } from "drizzle-orm";
 import type { Db } from "@/lib/db/client";
 import { events, leads } from "@/lib/db/schema";
@@ -146,6 +147,96 @@ export async function topCountries(db: Db, days: number, limit = 10) {
     )
     .groupBy(events.country)
     .orderBy(desc(c))
+    .limit(limit);
+}
+
+export async function topRegions(db: Db, days: number, limit = 12) {
+  const c = count();
+  return db
+    .select({
+      region: events.region,
+      country: events.country,
+      c,
+    })
+    .from(events)
+    .where(
+      and(
+        eq(events.eventType, "pageview"),
+        gte(events.occurredAt, since(days)),
+        isNotNull(events.region)
+      )
+    )
+    .groupBy(events.region, events.country)
+    .orderBy(desc(c))
+    .limit(limit);
+}
+
+export async function topCities(db: Db, days: number, limit = 12) {
+  const c = count();
+  return db
+    .select({
+      city: events.city,
+      region: events.region,
+      country: events.country,
+      c,
+    })
+    .from(events)
+    .where(
+      and(
+        eq(events.eventType, "pageview"),
+        gte(events.occurredAt, since(days)),
+        isNotNull(events.city)
+      )
+    )
+    .groupBy(events.city, events.region, events.country)
+    .orderBy(desc(c))
+    .limit(limit);
+}
+
+export async function topIps(db: Db, days: number, limit = 20) {
+  const c = count();
+  return db
+    .select({
+      ip: events.ip,
+      city: events.city,
+      region: events.region,
+      country: events.country,
+      visits: c,
+      lastSeen: max(events.occurredAt),
+    })
+    .from(events)
+    .where(
+      and(
+        eq(events.eventType, "pageview"),
+        gte(events.occurredAt, since(days)),
+        isNotNull(events.ip)
+      )
+    )
+    .groupBy(events.ip, events.city, events.region, events.country)
+    .orderBy(desc(c))
+    .limit(limit);
+}
+
+export async function recentVisits(db: Db, limit = 30) {
+  return db
+    .select({
+      occurredAt: events.occurredAt,
+      visitorId: events.visitorId,
+      sessionId: events.sessionId,
+      ip: events.ip,
+      city: events.city,
+      region: events.region,
+      country: events.country,
+      path: events.path,
+      referrer: events.referrer,
+      deviceType: events.deviceType,
+      browser: events.browser,
+      os: events.os,
+      userAgent: events.userAgent,
+    })
+    .from(events)
+    .where(eq(events.eventType, "pageview"))
+    .orderBy(desc(events.occurredAt))
     .limit(limit);
 }
 

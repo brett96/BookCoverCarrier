@@ -3,6 +3,15 @@ import { UAParser } from "ua-parser-js";
 import { getDb } from "@/lib/db/client";
 import { events } from "@/lib/db/schema";
 
+function decodeSafe(value: string | null | undefined): string | undefined {
+  if (!value) return undefined;
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as {
@@ -26,8 +35,14 @@ export async function POST(req: Request) {
     const browser = ua.browser.name ?? "";
     const os = ua.os.name ?? "";
     const country = req.headers.get("x-vercel-ip-country") ?? undefined;
-    const region = req.headers.get("x-vercel-ip-country-region") ?? undefined;
-    const city = req.headers.get("x-vercel-ip-city") ?? undefined;
+    const region = decodeSafe(req.headers.get("x-vercel-ip-country-region"));
+    const city = decodeSafe(req.headers.get("x-vercel-ip-city"));
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const ipRaw =
+      forwardedFor?.split(",")[0]?.trim() ??
+      req.headers.get("x-real-ip") ??
+      null;
+    const ip = ipRaw ? ipRaw.slice(0, 64) : undefined;
 
     const db = getDb();
     if (db) {
@@ -46,6 +61,8 @@ export async function POST(req: Request) {
         deviceType,
         browser,
         os,
+        ip,
+        userAgent: uaStr || undefined,
         properties: body.properties ?? {},
       });
     }
