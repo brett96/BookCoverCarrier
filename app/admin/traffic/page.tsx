@@ -28,36 +28,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { VisitorsAreaChart } from "@/components/admin/VisitorsAreaChart";
+import {
+  decodeGeo,
+  formatPtDateTime,
+  formatRelative,
+} from "@/lib/format-date";
 
 function formatLocation(
   city?: string | null,
   region?: string | null,
   country?: string | null
 ) {
-  const parts = [city, region, country].filter(Boolean) as string[];
+  const parts = [decodeGeo(city), decodeGeo(region), country].filter(
+    Boolean
+  ) as string[];
   return parts.length ? parts.join(", ") : "—";
-}
-
-function formatTimestamp(d: Date | string | null | undefined) {
-  if (!d) return "—";
-  const date = d instanceof Date ? d : new Date(d);
-  if (Number.isNaN(date.getTime())) return "—";
-  return date.toISOString().replace("T", " ").slice(0, 19) + " UTC";
-}
-
-function formatRelative(d: Date | string | null | undefined) {
-  if (!d) return "—";
-  const date = d instanceof Date ? d : new Date(d);
-  if (Number.isNaN(date.getTime())) return "—";
-  const diffMs = Date.now() - date.getTime();
-  const sec = Math.round(diffMs / 1000);
-  if (sec < 60) return `${sec}s ago`;
-  const min = Math.round(sec / 60);
-  if (min < 60) return `${min}m ago`;
-  const hr = Math.round(min / 60);
-  if (hr < 48) return `${hr}h ago`;
-  const day = Math.round(hr / 24);
-  return `${day}d ago`;
 }
 
 function shortenUa(deviceType?: string | null, browser?: string | null, os?: string | null) {
@@ -171,7 +156,7 @@ export default async function TrafficPage() {
                   className="flex justify-between gap-4"
                 >
                   <span className="truncate text-slate-600">
-                    {r.region}
+                    {decodeGeo(r.region)}
                     {r.country ? (
                       <span className="text-slate-400"> · {r.country}</span>
                     ) : null}
@@ -198,11 +183,13 @@ export default async function TrafficPage() {
                   className="flex justify-between gap-4"
                 >
                   <span className="truncate text-slate-600">
-                    {c.city}
+                    {decodeGeo(c.city)}
                     {c.region || c.country ? (
                       <span className="text-slate-400">
                         {" · "}
-                        {[c.region, c.country].filter(Boolean).join(", ")}
+                        {[decodeGeo(c.region), c.country]
+                          .filter(Boolean)
+                          .join(", ")}
                       </span>
                     ) : null}
                   </span>
@@ -301,7 +288,8 @@ export default async function TrafficPage() {
         <CardHeader>
           <CardTitle>Recent visits</CardTitle>
           <CardDescription>
-            Last 50 pageviews with IP, location, and device. UTC timestamps.
+            Last 50 pageviews with IP, location, and device. Times in Pacific
+            (PT).
           </CardDescription>
         </CardHeader>
         <CardContent className="px-0">
@@ -323,7 +311,7 @@ export default async function TrafficPage() {
                 {visits.map((v, i) => (
                   <TableRow key={`${v.occurredAt?.toString() ?? ""}-${i}`}>
                     <TableCell className="whitespace-nowrap text-xs text-slate-500">
-                      {formatTimestamp(v.occurredAt)}
+                      {formatPtDateTime(v.occurredAt)}
                     </TableCell>
                     <TableCell
                       className="max-w-[16rem] truncate text-slate-700"

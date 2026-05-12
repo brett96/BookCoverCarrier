@@ -26,3 +26,9 @@ execSync("npx tsx scripts/seed-admin.ts", {
   stdio: "inherit",
   env: process.env,
 });
+
+console.log("[postbuild] backfill URL-encoded geo (idempotent)");
+execSync("npx tsx scripts/backfill-geo.ts", {
+  stdio: "inherit",
+  env: process.env,
+});

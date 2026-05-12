@@ -10,16 +10,11 @@ import {
 } from "drizzle-orm";
 import type { Db } from "@/lib/db/client";
 import { events, leads } from "@/lib/db/schema";
+import { formatPtDate, startOfPtDay } from "@/lib/format-date";
 
 function since(days: number) {
   const d = new Date();
   d.setDate(d.getDate() - days);
-  return d;
-}
-
-function startOfUtcDay() {
-  const d = new Date();
-  d.setUTCHours(0, 0, 0, 0);
   return d;
 }
 
@@ -30,7 +25,7 @@ export async function distinctVisitorsToday(db: Db) {
     .where(
       and(
         eq(events.eventType, "pageview"),
-        gte(events.occurredAt, startOfUtcDay())
+        gte(events.occurredAt, startOfPtDay())
       )
     );
   return Number(row?.c ?? 0);
@@ -55,7 +50,7 @@ export async function pageviewsByDay(db: Db, days: number) {
     );
   const map = new Map<string, Set<string>>();
   for (const r of rows) {
-    const d = r.occurredAt.toISOString().slice(0, 10);
+    const d = formatPtDate(r.occurredAt);
     if (!map.has(d)) map.set(d, new Set());
     map.get(d)!.add(r.visitorId);
   }

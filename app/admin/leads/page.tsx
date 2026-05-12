@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { formatPtDateTime } from "@/lib/format-date";
 
 export default async function LeadsPage({
   searchParams,
@@ -78,8 +79,8 @@ export default async function LeadsPage({
               <TableCell>
                 <Badge variant="secondary">{l.status}</Badge>
               </TableCell>
-              <TableCell className="text-slate-500">
-                {l.createdAt.toISOString().slice(0, 10)}
+              <TableCell className="whitespace-nowrap text-slate-500">
+                {formatPtDateTime(l.createdAt)}
               </TableCell>
             </TableRow>
           ))}
