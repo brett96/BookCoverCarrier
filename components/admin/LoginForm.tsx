@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { signIn } from "next-auth/react";
+import { requestPasswordReset } from "@/lib/actions/request-password-reset";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,15 +14,30 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
+type Notice =
+  | { kind: "error"; message: string }
+  | { kind: "info"; message: string }
+  | { kind: "success"; message: string };
+
+const GENERIC_RESET_NOTICE =
+  "If a password reset is available for this account, an email with a one-time link has been sent. The link expires in 60 minutes.";
+
+export function LoginForm({
+  callbackUrl,
+  initialNotice,
+}: {
+  callbackUrl: string;
+  initialNotice?: Notice | null;
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [notice, setNotice] = useState<Notice | null>(initialNotice ?? null);
   const [loading, setLoading] = useState(false);
+  const [resetPending, startResetTransition] = useTransition();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
+    setNotice(null);
     setLoading(true);
     const res = await signIn("credentials", {
       email,
@@ -31,11 +47,31 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
     });
     setLoading(false);
     if (res?.error) {
-      setError("Invalid email or password.");
+      setNotice({ kind: "error", message: "Invalid email or password." });
       return;
     }
     window.location.href = res?.url ?? callbackUrl;
   }
+
+  function onRequestReset() {
+    setNotice(null);
+    startResetTransition(async () => {
+      try {
+        await requestPasswordReset();
+      } catch {
+        // Even if the action throws, surface the same generic message — we
+        // intentionally do not reveal whether the underlying send succeeded.
+      }
+      setNotice({ kind: "info", message: GENERIC_RESET_NOTICE });
+    });
+  }
+
+  const noticeColor =
+    notice?.kind === "error"
+      ? "text-red-600"
+      : notice?.kind === "success"
+        ? "text-green-700"
+        : "text-slate-600";
 
   return (
     <Card className="w-full max-w-md">
@@ -67,10 +103,22 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
               required
             />
           </div>
-          {error && <p className="text-sm text-red-600">{error}</p>}
+          {notice && (
+            <p className={`text-sm ${noticeColor}`}>{notice.message}</p>
+          )}
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Signing in…" : "Sign in"}
           </Button>
+          <div className="border-t border-slate-100 pt-3 text-center">
+            <button
+              type="button"
+              onClick={onRequestReset}
+              disabled={resetPending}
+              className="text-sm font-medium text-blue-700 hover:underline disabled:cursor-not-allowed disabled:text-slate-400"
+            >
+              {resetPending ? "Sending reset link…" : "Reset password"}
+            </button>
+          </div>
         </form>
       </CardContent>
     </Card>

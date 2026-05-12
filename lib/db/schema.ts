@@ -84,6 +84,20 @@ export const siteSettings = pgTable("site_settings", {
     .defaultNow(),
 });
 
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").notNull(),
+  tokenHash: varchar("token_hash", { length: 128 }).notNull().unique(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  usedAt: timestamp("used_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  ip: varchar("ip", { length: 64 }),
+  userAgent: text("user_agent"),
+});
+
 export type User = typeof users.$inferSelect;
 export type Lead = typeof leads.$inferSelect;
 export type EventRow = typeof events.$inferSelect;
+export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
