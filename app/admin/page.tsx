@@ -10,8 +10,10 @@ import {
   pageviewsByDay,
   recentLeads,
   scrollDepthAvg,
+  topCities,
   topReferrers,
 } from "@/lib/analytics";
+import { decodeGeo } from "@/lib/format-date";
 import {
   Card,
   CardContent,
@@ -36,18 +38,29 @@ export default async function AdminOverviewPage() {
     );
   }
 
-  const [vToday, v7, v30, leads30, funnel, series, ctas, scroll, referrers] =
-    await Promise.all([
-      distinctVisitorsToday(db),
-      distinctVisitors(db, 7),
-      distinctVisitors(db, 30),
-      leadsCountSince(db, 30),
-      funnelCounts(db, 30),
-      pageviewsByDay(db, 30),
-      ctaLeaderboard(db, 30),
-      scrollDepthAvg(db, 30),
-      topReferrers(db, 30, 6),
-    ]);
+  const [
+    vToday,
+    v7,
+    v30,
+    leads30,
+    funnel,
+    series,
+    ctas,
+    scroll,
+    referrers,
+    cities,
+  ] = await Promise.all([
+    distinctVisitorsToday(db),
+    distinctVisitors(db, 7),
+    distinctVisitors(db, 30),
+    leadsCountSince(db, 30),
+    funnelCounts(db, 30),
+    pageviewsByDay(db, 30),
+    ctaLeaderboard(db, 30),
+    scrollDepthAvg(db, 30),
+    topReferrers(db, 30, 6),
+    topCities(db, 30, 8),
+  ]);
   const leads = await recentLeads(db, 6);
   const conv =
     funnel.pageview > 0
@@ -154,6 +167,45 @@ export default async function AdminOverviewPage() {
               ))}
               {!referrers.length && (
                 <li className="text-slate-500">No referrer data yet.</li>
+              )}
+            </ul>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Top cities (30d)</CardTitle>
+            <CardDescription>
+              <Link
+                href="/admin/traffic"
+                className="text-blue-600 hover:underline"
+              >
+                View all
+              </Link>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2 text-sm">
+              {cities.map((c) => (
+                <li
+                  key={`${c.city ?? ""}-${c.region ?? ""}-${c.country ?? ""}`}
+                  className="flex justify-between gap-4"
+                >
+                  <span className="truncate text-slate-600">
+                    {decodeGeo(c.city)}
+                    {c.region || c.country ? (
+                      <span className="text-slate-400">
+                        {" · "}
+                        {[decodeGeo(c.region), c.country]
+                          .filter(Boolean)
+                          .join(", ")}
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="shrink-0 font-semibold">{c.c}</span>
+                </li>
+              ))}
+              {!cities.length && (
+                <li className="text-slate-500">No city data yet.</li>
               )}
             </ul>
           </CardContent>
