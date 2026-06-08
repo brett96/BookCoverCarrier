@@ -17,7 +17,7 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title:
-    "BookCover — Managed Member Engagement & Retention Services for Health Plans",
+    "BookCover | AI-Powered Retention Marketing Service for Health Plans",
   description:
     "BookCover pairs your organization with a dedicated retention consultant who leads your engagement strategy, manages outreach campaigns, and works alongside your team year-round.",
 };

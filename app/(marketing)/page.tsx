@@ -6,6 +6,7 @@ import { fixMojibake } from "@/lib/marketing/fixMojibake";
 function clean(html: string) {
   return fixMojibake(html)
     .replace(/https?:\/\/www\.cercalabs\.com\/contact\/?/g, "/contact")
+    .replace(/https?:\/\/bookcover\.cercalabs\.com\/?/g, "/")
     .replace(/BookCover_Contact\.html/g, "/contact")
     .replace(/href="#"/g, 'href="/"')
     .replace(/\s*onclick="[^"]*"/g, "");
